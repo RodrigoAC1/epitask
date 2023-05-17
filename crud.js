@@ -8,11 +8,13 @@ window.addEventListener("load", () => {
 })
 
 document.querySelector("#indisponivel").addEventListener("click", () => {
-    lista_produtos.filter(produtos => !produtos.disponivel)
+    lista_produtos = JSON.parse (localStorage.getItem("lista_produtos")) || []
+    lista_produtos = lista_produtos.filter(produtos => !produtos.disponivel)
     atualizar()
 })
 
 document.querySelector("#busca").addEventListener("keyup", () => {
+    lista_produtos = JSON.parse (localStorage.getItem("lista_produtos")) || []
     const nome =  document.querySelector("#busca").value
     lista_produtos = lista_produtos.filter(produtos => produtos.nome.includes(nome))
     atualizar()
@@ -20,7 +22,7 @@ document.querySelector("#busca").addEventListener("keyup", () => {
 
 document.querySelector("#disponivel").addEventListener("click", () => {
     lista_produtos = JSON.parse (localStorage.getItem("lista_produtos")) || []
-    lista_produtos.filter(produtos => produtos.disponivel)
+    lista_produtos = lista_produtos.filter(produtos => produtos.disponivel)
     atualizar()
 })
 
